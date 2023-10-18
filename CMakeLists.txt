@@ -172,6 +172,10 @@ if(DEFINED SUITE_TEST_RANGE)
     add_definitions(-DSUITE_TEST_RANGE_MAX="${SUITE_TEST_RANGE_MAX}")
 endif()
 
+if(DEFINED SUITE_EXCLUDED)
+    add_definitions(-DSUITE_EXCLUDED="${SUITE_EXCLUDED}")
+endif()
+
 # Check for SECURE_TEST_ENABLE
 if(NOT DEFINED SECURE_TEST_ENABLE)
     message(STATUS "[ACS] : SECURE_TEST_ENABLE is not define so secure tests will be skipped.")
