@@ -54,4 +54,7 @@ void *pal_memcpy(void *dst, const void *src, size_t len);
 
 size_t pal_strlen(char *str);
 
+char *pal_strtok(char *string,char *delimiter);
+
+char* pal_strcpy(char* destination, const char* source);
 #endif
