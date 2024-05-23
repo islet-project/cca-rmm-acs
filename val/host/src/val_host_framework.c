@@ -303,7 +303,7 @@ static void val_host_test_dispatch(bool primary_cpu_boot)
     char str[] = SUITE_EXCLUDED;
     char delimeter[] = ",";
     char *result = NULL;
-    char excluded_tests[60][80];
+    char excluded_tests[60][80] = {0};
     uint32_t k = 0;
     uint32_t total_excluded = 0;
 	    
