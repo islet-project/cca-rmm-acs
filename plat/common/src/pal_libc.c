@@ -108,8 +108,8 @@ size_t strlen(char *str)
 
 // Reference: https://velog.io/@bakukun/%EA%B8%B0%EB%B3%B8-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC%EB%A1%9C-C%EC%96%B8%EC%96%B4-strtok%ED%95%A8%EC%88%98-%EA%B5%AC%ED%98%84%ED%95%98%EA%B8%B0
 char *pal_strtok(char *str,char *deli){	
-	int i;
-	int deli_len = pal_strlen(deli);
+	size_t i;
+	size_t deli_len = pal_strlen(deli);
 	static char* tmp = NULL;
 	
 	if(str != NULL && !tmp){
@@ -154,14 +154,6 @@ char *pal_strtok(char *str,char *deli){
 		}
     }
     return idx;
-}
-
-int pal_strlen(char *str){
-    int cnt=0;
-    while(str[cnt]!='\0'){
-        ++cnt;
-    }
-    return cnt;
 }
 
 //Reference: https://www.techiedelight.com/ko/implement-strcpy-function-c/
