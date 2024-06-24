@@ -29,6 +29,7 @@ arg_acs_ns_preload_addr=${ACS_NS_PRELOAD_ADDR_DFLT}
 arg_test_timeout=1000
 arg_debug=
 arg_trace=
+arg_trace_toggle=
 arg_no_telnet=
 suite_timeout_multiplier=3
 test_report_logfile=
@@ -129,6 +130,10 @@ case "$1" in
         arg_trace=yes
         shift 1
         ;;
+    --trace-toggle)
+        arg_trace_toggle=yes
+        shift 1
+        ;;
     --no_telnet)
         arg_no_telnet=yes
         shift 1
@@ -218,6 +223,38 @@ then
  -C TRACE.TarmacTrace.trace_cache=0 \
  -C TRACE.TarmacTrace.updated-registers=1 \
  -C TRACE.TarmacTrace.trace-file=${arg_acs_build_dir}/../../../out/trace.log"
+    fi
+
+    if [[ ${arg_trace_toggle} == "yes" ]]
+    then
+    fvp_cmd="${fvp_cmd} \
+ --plugin ${arg_acs_build_dir}/../../../third-party/fvp/Base_RevC_AEMvA_pkg/plugins/Linux64_GCC-9.3/TarmacTrace.so \
+ -C TRACE.TarmacTrace.trace_atomic=0 \
+ -C TRACE.TarmacTrace.trace_bte=0 \
+ -C TRACE.TarmacTrace.trace_cache=0 \
+ -C TRACE.TarmacTrace.trace_core_registers=0 \
+ -C TRACE.TarmacTrace.trace_cp15=0 \
+ -C TRACE.TarmacTrace.trace_dap=0 \
+ -C TRACE.TarmacTrace.trace_ete=0 \
+ -C TRACE.TarmacTrace.trace_events=0 \
+ -C TRACE.TarmacTrace.trace_exception_reasons=0 \
+ -C TRACE.TarmacTrace.trace_gicv3=0 \
+ -C TRACE.TarmacTrace.trace_gpt=0 \
+ -C TRACE.TarmacTrace.trace_hacdbs=0 \
+ -C TRACE.TarmacTrace.trace_hdbss=0 \
+ -C TRACE.TarmacTrace.trace_loads_stores=0 \
+ -C TRACE.TarmacTrace.trace_mmu=0 \
+ -C TRACE.TarmacTrace.trace_spe=0 \
+ -C TRACE.TarmacTrace.trace_tag_loads_stores=0 \
+ -C TRACE.TarmacTrace.trace_vfp=0 \
+ -C TRACE.TarmacTrace.unbuffered=1 \
+ -C TRACE.TarmacTrace.trace-file=${arg_acs_build_dir}/../../../out/trace.log \
+ --plugin ${arg_acs_build_dir}/../../../third-party/fvp/Base_RevC_AEMvA_pkg/plugins/Linux64_GCC-9.3/ToggleMTIPlugin.so \
+ -C TRACE.ToggleMTIPlugin.disable_mti_from_start=1 \
+ -C TRACE.ToggleMTIPlugin.use_hlt=1 \
+ -C TRACE.ToggleMTIPlugin.hlt_imm16=5 \
+ -C cluster0.cpu0.enable_trace_special_hlt_imm16=1 \
+ -C cluster0.cpu0.trace_special_hlt_imm16=5"
     fi
 
     if [[ ${arg_no_telnet} == "yes" ]]
