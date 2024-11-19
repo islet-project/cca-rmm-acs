@@ -334,7 +334,7 @@ uint32_t val_host_map_unprotected(val_host_realm_ts *realm,
     uint64_t rd = realm->rd;
     uint64_t map_level, rtt_level;
     uint64_t ret = 0;
-    uint64_t mem_desc = ns_pa | ATTR_NORMAL_WB | ATTR_STAGE2_MASK | ATTR_INNER_SHARED;
+    uint64_t mem_desc = ns_pa | ATTR_NORMAL_WB | ATTR_STAGE2_MASK;
     val_host_rtt_entry_ts rtte;
 
     if (!ADDR_IS_ALIGNED(ipa, rtt_map_size))
