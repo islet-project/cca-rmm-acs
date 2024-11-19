@@ -75,6 +75,9 @@ uint32_t val_host_realm_create_common(val_host_realm_ts *realm)
     params->rtt_level_start = realm->s2_starting_level;
     params->rtt_num_start = realm->num_s2_sl_rtts;
     params->vmid = realm->vmid;
+    /* RealmParams strucurue takes the number of breakpoints, minus one */
+    params->num_bps = realm->num_bps + 1;
+    params->num_wps = realm->num_wps + 1;
 
     /* Create realm */
     if (val_host_rmi_realm_create(realm->rd, (uint64_t)params))
