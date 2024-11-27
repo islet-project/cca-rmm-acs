@@ -484,3 +484,8 @@ uint64_t ipa_protected_unassigned_empty_prep_sequence(uint64_t rd)
     }
     return IPA_ADDR_PROTECTED_UNASSIGNED_EMPTY;
 }
+
+uint64_t g_pa_in_lpa2_range_prep_sequence(void)
+{
+    return (0x1ULL << 48) + PAGE_SIZE;
+}
