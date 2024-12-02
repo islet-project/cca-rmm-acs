@@ -178,7 +178,6 @@ static uint64_t top_rtt_unaligned_prep_sequence(void)
     return rec_exit->ripas_base;
 }
 
-
 static uint64_t valid_input_args_prep_sequence(void)
 {
     c_args.rd_valid = rd_valid_prep_sequence();
@@ -366,11 +365,11 @@ static uint64_t intent_to_seq(struct stimulus *test_data, struct arguments *args
             args->top = c_args.top_valid - PAGE_SIZE / 2;
             break;
 
-        case TOP_RTT_UNALIGNED:
+        case TOP_LEVEL_UNALIGNED:
             args->rd = c_args.rd_valid;
             args->rec_ptr = realm[VALID_REALM].rec[1];
             args->base = top_rtt_unaligned_prep_sequence();
-            args->top = args->base + L2_SIZE + L3_SIZE;
+            args->top = args->base + L3_SIZE;
             break;
 
         case BASE_MISMATCH_BASE_UNALIGNED:
@@ -380,11 +379,11 @@ static uint64_t intent_to_seq(struct stimulus *test_data, struct arguments *args
             args->top = c_args.top_valid;
             break;
 
-        case TOP_GRAN_UNALIGNED_TOP_RTT_UNALIGNED:
+        case TOP_GRAN_UNALIGNED_TOP_LEVEL_UNALIGNED:
             args->rd = c_args.rd_valid;
             args->rec_ptr = realm[VALID_REALM].rec[1];
             args->base = top_rtt_unaligned_prep_sequence();
-            args->top = args->base + L2_SIZE + (L3_SIZE / 2);
+            args->top = args->base + (L3_SIZE / 2);
             break;
 
         default:
