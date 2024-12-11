@@ -88,7 +88,8 @@ DECLARE_TEST_FN(mm_rtt_fold_assigned);
 DECLARE_TEST_FN(mm_rtt_fold_unassigned);
 DECLARE_TEST_FN(mm_rtt_fold_unassigned_ns);
 DECLARE_TEST_FN(mm_rtt_fold_assigned_ns);
-DECLARE_TEST_FN(mm_ripas_destroyed_da_ia);
+DECLARE_TEST_FN(mm_ripas_destroyed_da);
+DECLARE_TEST_FN(mm_ripas_destroyed_ia);
 DECLARE_TEST_FN(mm_hipas_unassigned_ripas_empty_da_ia);
 DECLARE_TEST_FN(mm_hipas_unassigned_ripas_ram_da_ia);
 DECLARE_TEST_FN(mm_feat_s2fwb_check_1);
@@ -114,6 +115,7 @@ DECLARE_TEST_FN(exception_emulatable_da);
 DECLARE_TEST_FN(exception_non_emulatable_da);
 DECLARE_TEST_FN(exception_non_emulatable_da_1);
 DECLARE_TEST_FN(exception_non_emulatable_da_2);
+DECLARE_TEST_FN(exception_non_emulatable_da_3);
 /*Exception model declaration ends here*/
 
 /*GIC testcase declaration starts here*/
@@ -309,6 +311,9 @@ DECLARE_TEST_FN(pmu_overflow);
     #if (defined(TEST_COMBINE) || defined(d_exception_non_emulatable_da_2))
         HOST_REALM_TEST(exception, exception_non_emulatable_da_2),
     #endif
+    #if (defined(TEST_COMBINE) || defined(d_exception_non_emulatable_da_3))
+        HOST_REALM_TEST(exception, exception_non_emulatable_da_3),
+    #endif
 
 #endif /* #if (defined(d_all) || defined(d_exception)) */
 
@@ -397,8 +402,11 @@ DECLARE_TEST_FN(pmu_overflow);
     #if (defined(TEST_COMBINE) || defined(d_mm_hipas_assigned_ripas_empty_da_ia))
     HOST_REALM_TEST(memory_management, mm_hipas_assigned_ripas_empty_da_ia),
     #endif
-    #if (defined(TEST_COMBINE) || defined(d_mm_ripas_destroyed_da_ia))
-    HOST_REALM_TEST(memory_management, mm_ripas_destroyed_da_ia),
+    #if (defined(TEST_COMBINE) || defined(d_mm_ripas_destroyed_da))
+    HOST_REALM_TEST(memory_management, mm_ripas_destroyed_da),
+    #endif
+    #if (defined(TEST_COMBINE) || defined(d_mm_ripas_destroyed_ia))
+    HOST_REALM_TEST(memory_management, mm_ripas_destroyed_ia),
     #endif
     #if (defined(TEST_COMBINE) || defined(d_mm_hipas_unassigned_ns_da_ia))
     HOST_REALM_TEST(memory_management, mm_hipas_unassigned_ns_da_ia),
